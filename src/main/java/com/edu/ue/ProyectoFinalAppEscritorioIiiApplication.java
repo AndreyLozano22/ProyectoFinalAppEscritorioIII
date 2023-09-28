@@ -8,11 +8,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.edu.ue.model"})
-@EnableJpaRepositories(basePackages = {"com.edu.co.bill.dao", "com.edu.co.empleado.dao"})
+@EnableJpaRepositories(basePackages = {"com.edu.co.bill.dao", "com.edu.co.empleado.dao","com.edu.co.product.dao"})
 @ComponentScan(basePackages = {
 		"com.edu.co.bill.controller",
 		"com.edu.co.bill.service",
 		"com.edu.co.bill.dao",
+		"com.edu.co.product.controller",
+		"com.edu.co.product.service",
+		"com.edu.co.product.dao",
 		"com.edu.co.empleado.controller",
 		"com.edu.co.empleado.service",
 		"com.edu.co.empleado.dao"
