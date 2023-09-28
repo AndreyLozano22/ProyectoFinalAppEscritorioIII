@@ -28,17 +28,17 @@ public class EmpleadoController {
 		return service.getAllEmpleado();
 	}
 	
-	@PostMapping(value="newEmpleados",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="newempleados",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Employee newEmpleados(@RequestBody  Employee employee) {
 		return service.newEmpleados(employee);
 	}
 	
-	@DeleteMapping(value = "deleteEmpleados/{employeeId}")
+	@DeleteMapping(value = "deleteempleados/{employeeId}")
 	public void dropEmpleados (@PathVariable int employeeId) {
 		service.deleteAllEmpleados(employeeId);
 	}
 	
-	@PostMapping(value="UpdateEmpleados",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="Updateempleados",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Employee updateEmpleados (@RequestBody Employee employee) {
 		return service.updateAllEmpleados(employee);
 	}
