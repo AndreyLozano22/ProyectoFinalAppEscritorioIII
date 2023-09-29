@@ -20,10 +20,6 @@ public class EmpleadoService implements EmpleadoServiceI{
 		return daoEmpleado.getEmpleados();
 	}
 
-	@Override
-	public Employee newEmpleados(Employee employee) {
-		return daoEmpleado.createEmpleados(employee);
-	}
 
 	@Override
 	public void deleteAllEmpleados(int employeeId) {

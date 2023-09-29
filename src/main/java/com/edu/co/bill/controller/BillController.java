@@ -2,8 +2,12 @@ package com.edu.co.bill.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +31,13 @@ public class BillController {
 	}
 	
 	@PostMapping(value="newBill",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Bill newBill(@RequestBody Bill bill) {
-		return service.newBill(bill);
+	public String newBill(@Valid @RequestBody Bill bill, Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			return errors.getAllErrors().toString();
+			
+		}
+		service.newBill(bill);
+		return "Se ha creado una factura";
 	}
 	
 	@DeleteMapping(value="deleteBill/{bullId}")

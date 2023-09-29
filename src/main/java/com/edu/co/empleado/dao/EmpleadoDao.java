@@ -22,10 +22,6 @@ public class EmpleadoDao implements EmpleadoDaoI {
 		myEmpleado.deleteById(employeeId);
 	}
 
-	@Override
-	public Employee createEmpleados(Employee employee) {
-		return myEmpleado.save(employee);
-	}
 
 	@Override
 	public Employee updateEmpleados(Employee employeeId) {

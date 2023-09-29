@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.co.login.bcrypt.HashService;
 import com.edu.co.login.dao.LoginDAO;
 import com.edu.ue.model.Employee;
 
@@ -14,6 +15,7 @@ public class LoginService implements LoginServiceI {
 	
 	@Autowired
 	LoginDAO dao;
+	HashService newHash = new HashService();
 	
 
 	@Override
@@ -23,9 +25,9 @@ public class LoginService implements LoginServiceI {
 			
 			user = dao.getEmployee(employee.getUsername());
 			
-			if(user.getPassword().equals(employee.getPassword())) {
+			if(newHash.matchPasswords(user.getPassword(), employee.getPassword())) {
 				
-				return "loggin";
+				return null;
 			}
 			else {
 				return "Passwords no son iguales";
@@ -41,34 +43,18 @@ public class LoginService implements LoginServiceI {
 	@Override
 	public String newEmployee(Employee employee) {
 		
-		Pattern emailP = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-		Matcher emailM = emailP.matcher(employee.getEmail());
-		
-		Pattern usernameP = Pattern.compile("^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$");
-		Matcher usernameM = usernameP.matcher(employee.getUsername());
-		
-		Pattern fullnameP = Pattern.compile("^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$");
-		Matcher fullnameM = fullnameP.matcher(employee.getFullname());
-		
-		
-		if(!emailM.matches() || !fullnameM.matches() || !usernameM.matches() || employee.getPassword().isEmpty()) {
+		if(dao.getEmployee(employee.getUsername()) != null) {
 			
-			return "Los campos no son validos";
+			return "El usuario ya existe";
+			
+		} else {
+			
+			employee.setPassword(this.newHash.hashPassword(employee.getPassword()));
+			Employee user = dao.createEmployee(employee);
+			
+			return null;
 			
 		}
 		
-		
-		else {
-			if(dao.getEmployee(employee.getUsername()) != null) {
-				return "El usuario ya existe";
-				
-			} else {
-				Employee user = dao.createEmployee(employee);
-				return "Usuario creado: "+user.getUsername();
-			}
-		}
-			
 	}
-	
-
 }

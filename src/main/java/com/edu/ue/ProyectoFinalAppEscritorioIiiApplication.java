@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.edu.ue.model"})
-@EnableJpaRepositories(basePackages = {"com.edu.co.bill.dao", "com.edu.co.empleado.dao","com.edu.co.product.dao"})
+@EnableJpaRepositories(basePackages = {"com.edu.co.bill.dao", "com.edu.co.empleado.dao","com.edu.co.product.dao", "com.edu.co.login.dao"})
 @ComponentScan(basePackages = {
 		"com.edu.co.bill.controller",
 		"com.edu.co.bill.service",
@@ -26,7 +26,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class ProyectoFinalAppEscritorioIiiApplication {
 
 	public static void main(String[] args) {
+		
 		SpringApplication.run(ProyectoFinalAppEscritorioIiiApplication.class, args);
+		
 	}
 
 }

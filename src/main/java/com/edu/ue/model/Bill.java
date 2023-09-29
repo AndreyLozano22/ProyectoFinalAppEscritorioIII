@@ -2,6 +2,9 @@ package com.edu.ue.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.validation.constraints.*;
 
 
 /**
@@ -20,6 +23,7 @@ public class Bill implements Serializable {
 
 	@Lob
 	@Column(name="bill_customer_name")
+	@Pattern(regexp="^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$", message="Ingrese un nombre de cliente valido")
 	private String billCustomerName;
 
 	@Lob

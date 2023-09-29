@@ -1,8 +1,11 @@
 package com.edu.co.login.controller;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +22,10 @@ public class LoginController {
 	LoginServiceI service;
 	
 	@PostMapping(value="createEmployee", consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public String addEmployee(@RequestBody Employee employee) {
+	public String addEmployee(@Valid @RequestBody Employee employee, Errors errors) {
+		if(errors.hasErrors()) {
+			return errors.getAllErrors().toString();
+		}
 		return service.newEmployee(employee);		
 		
 	}
