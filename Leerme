@@ -1,0 +1,5 @@
+1. El hasheado esta hecho con una clase llamada HashService, usando spring security y BCrypt. Solo se llama para hashear y para matchear y listo.
+2. Los regex estan en el archivo aplicados directamente al modelo. Cada patron tiene una respuesta de error que el servidor devuelve a POSTMAN si el error existe. Hay algunas cosas a las que no me parecio necesario hacer validacion.
+3. Si se da eliminar a un producto, el lo pone como no disponible.
+4. En la base de datos se puede mostrar como queda la contrasena hasheada.
+5. El crear empleado es el uncio que verifica si el empleado no existe y entonces lo crea. Si existe genera error. El login tambien verifica si existe para poder iniciar sesion.
